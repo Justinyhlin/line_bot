@@ -1,5 +1,5 @@
 from flask import Flask, request, abort
-
+import os
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -12,8 +12,8 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('CHANNEL_ACCESS_TOKEN')
-handler = WebhookHandler('CHANNEL_SECRET')
+LINEBOTAPI = LineBotApi(os.getenv('LINE_BOT_CHANNEL_ACCESS_TOKEN'))
+HANDLER = WebhookHandler(os.getenv('LINE_BOT_CHANNEL_ACCESS_SECRET'))
 
 
 @app.route("/callback", methods=['POST'])
